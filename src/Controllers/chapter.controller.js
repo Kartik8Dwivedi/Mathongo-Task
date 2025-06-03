@@ -9,7 +9,7 @@ class ChapterController {
     try {
       const {
         subject,
-        class: className,
+        className,
         unit,
         status,
         isWeakChapter,
