@@ -1,0 +1,22 @@
+[
+  {
+    "subject": "Physics",
+    "chapter": "Waves",
+    "class": "12",
+    "unit": "Unit 1",
+    "yearWiseQuestionCount": { "2022": 10 },
+    "questionSolved": 5,
+    "status": "Completed",
+    "isWeakChapter": false
+  },
+  {
+    "subject": "Invalid",
+    "chapter": "Bad Chapter",
+    "class": "12",
+    "unit": "Unit 2",
+    "yearWiseQuestionCount": {},
+    "questionSolved": -1,
+    "status": "WrongStatus",
+    "isWeakChapter": "yes"
+  }
+]

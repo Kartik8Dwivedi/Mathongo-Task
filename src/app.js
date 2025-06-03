@@ -17,7 +17,9 @@ app.use(morgan('short'));
  
 Config.RateLimiter(app);
 
-connectToDB();
+if (process.env.NODE_ENV !== "test") {
+  connectToDB();
+}
 
 app.use('/api', ApiRoutes);
 

@@ -4,6 +4,7 @@ import "dotenv/config";
 const MONGO_URI = process.env.MONGO_URI;
 
 const connectToDB = async () => {
+  if (process.env.NODE_ENV === "test") return;
   await connect(MONGO_URI)
     .then((conn) => {
       console.log(`✅ Connected to MongoDB at ${conn.connection.host}`);
