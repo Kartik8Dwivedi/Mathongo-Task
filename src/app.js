@@ -6,6 +6,7 @@ import ApiRoutes from './Routes/index.js';
 import Config from './Config/serverConfig.js';
 import errorMiddleware from './Middlewares/errorMiddleware.js';
 import connectToDB from './Config/db.js';
+import setupSwagger from './docs/swagger.js';
 
 const app = express();
 
@@ -19,6 +20,8 @@ Config.RateLimiter(app);
 connectToDB();
 
 app.use('/api', ApiRoutes);
+
+setupSwagger(app);
 
 app.all("*", (req, res) => {
   res.status(200).send("<div>OOPS! 404 page not found</div>");

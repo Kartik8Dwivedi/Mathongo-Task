@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "093635f9-d372-445b-a71c-9cdb72e25b86",
+		"name": "MathonGo Chapters API",
+		"description": "This collection contains the details about the API that are made for the MathonGo Chapters API Task that was provided to me for the backend intern role at MathonGo.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27331979"
+	},
+	"item": [
+		{
+			"name": "GET /api/v1/chapters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/chapters?subject=Mathematics&class=Class 11&unit=Algebra&status=Not Started&isWeakChapter=false&page=1&limit=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"chapters"
+					],
+					"query": [
+						{
+							"key": "subject",
+							"value": "Mathematics"
+						},
+						{
+							"key": "class",
+							"value": "Class 11"
+						},
+						{
+							"key": "unit",
+							"value": "Algebra"
+						},
+						{
+							"key": "status",
+							"value": "Not Started"
+						},
+						{
+							"key": "isWeakChapter",
+							"value": "false"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/v1/chapters/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000/api/v1/chapters/683f66f6e266087d5ca60731"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/v1/chapters",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-admin",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/wafers/Desktop/dev/mathongo/test-data.json"
+						}
+					]
+				},
+				"url": "http://localhost:5000/api/v1/chapters/"
+			},
+			"response": []
+		}
+	]
+}
