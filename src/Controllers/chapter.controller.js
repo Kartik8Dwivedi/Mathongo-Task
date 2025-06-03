@@ -1,5 +1,6 @@
 import Chapter from "../Models/Chapter.js";
 import redisClient from "../Config/redis.js"; 
+import mongoose from "mongoose";
 
 class ChapterController {
   /**
@@ -63,6 +64,43 @@ class ChapterController {
       });
     }
   };
+
+    /**
+     * GET /api/v1/chapters/:id
+     */
+    getChapterById = async (req, res) => {
+        try {
+          const { id } = req.params;
+
+          // Validate MongoDB ObjectId
+          if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
+              success: false,
+              message: "Invalid chapter ID",
+            });
+          }
+
+          const chapter = await Chapter.findById(id);
+
+          if (!chapter) {
+            return res.status(404).json({
+              success: false,
+              message: "Chapter not found",
+            });
+          }
+
+          return res.status(200).json({
+            success: true,
+            data: chapter,
+          });
+        } catch (error) {
+          console.error("Error fetching chapter by ID:", error);
+          return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+          });
+        }
+    }
 }
 
 
