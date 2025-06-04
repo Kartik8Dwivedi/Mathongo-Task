@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    container_name: chapter-api
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - .:/app
+
+  mongo:
+    image: mongo:6
+    container_name: chapter-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    container_name: chapter-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_data:
