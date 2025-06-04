@@ -160,7 +160,7 @@ docker run -p 5000:5000 -v $(pwd):/app --env-file .env chapter-api
 - Link for the deployed app: [[Deployed EC2 Instance]](http://ec2-65-0-176-45.ap-south-1.compute.amazonaws.com/api-docs/)
 - Link for Public EC2 instance: [[Link for Public EC2 IP]](http://65.0.176.45/api-docs/)
 - CI/CD enabled with your real EC2 SSH key
-
+- This project is also deployed on Render.com for easy access: [[Render Deployment]](https://mathongo-task-kadn.onrender.com/api/v1/chapters)
 
 ---
 
