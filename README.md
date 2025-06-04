@@ -9,6 +9,7 @@ Built using Node.js, Express, MongoDB, and Redis — with full support for filte
 
 ## 🚀 Features
 
+
 - ✅ Bulk upload chapters via JSON file (Admin-only access)
 - ✅ Filter chapters by class, unit, subject, status, and weak chapters
 - ✅ Pagination support with total count returned
