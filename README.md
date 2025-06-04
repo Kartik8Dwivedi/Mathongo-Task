@@ -139,10 +139,15 @@ docker run -p 5000:5000 -v $(pwd):/app --env-file .env chapter-api
 
 ---
 
-## 🚀 Deployment Options
+## 🚀 Deployment 
 
-- Render, Railway, Fly.io — easy free-tier deployment
-- EC2 instance (bonus): Add GitHub Actions workflow for auto-deploy
+- Deployed on AWS EC2 (t3.micro free-tier), MongoDB Atlas, and Redis Cloud
+- Used PM2 for process management
+- Used Nginx as a reverse proxy
+- CI/CD with GitHub Actions (optional)
+- Dockerized for easy deployment
+- Link for the deployed app: [[MathonGo Chapter Performance Dashboard]](http://ec2-65-0-176-45.ap-south-1.compute.amazonaws.com/api-docs/)
+
 
 ---
 
@@ -155,9 +160,8 @@ docker run -p 5000:5000 -v $(pwd):/app --env-file .env chapter-api
 | Global error handler| ✅ Included |
 | Rate limiter        | ✅ Redis-based |
 | Logging             | ✅ Morgan middleware |
+| Dockerfile          | ✅ Optional |
 | CI/CD (GitHub)      | 🟡 Optional |
-| Dockerfile          | 🟡 Optional |
-| Test coverage badge | 🟡 Optional |
 
 ---
 
