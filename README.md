@@ -17,6 +17,16 @@ Built using Node.js, Express, MongoDB, and Redis — with full support for filte
 - ✅ Swagger documentation at `/api-docs`
 - ✅ Public Postman collection with examples
 - ✅ Integration tested using Jest, Supertest & MongoMemoryServer
+- ✅ Global error handling and logging with Morgan
+- ✅ Docker support for easy deployment (Simply run `sudo docker compose up --build`)
+- ✅ CI/CD workflow with GitHub Actions.
+- ✅ Deployed on AWS EC2 with MongoDB Atlas and Redis Cloud
+- ✅ Environment variables for configuration
+- ✅ Fully isolated test environment using mongodb-memory-server
+- ✅ Admin-only upload route with access control
+- ✅ Rate limiting to prevent abuse
+- ✅ Comprehensive API documentation with Swagger UI
+- ✅ Detailed Postman collection for easy testing: [[Postman Collection]](https://www.postman.com/avionics-pilot-26434826/mathongo/collection/5cwakth/chapter-performance-dashboard-api-mathongo?action=share&creator=27331979)
 
 ---
 
@@ -146,12 +156,14 @@ docker run -p 5000:5000 -v $(pwd):/app --env-file .env chapter-api
 - Used Nginx as a reverse proxy
 - CI/CD with GitHub Actions (optional)
 - Dockerized for easy deployment
-- Link for the deployed app: [[MathonGo Chapter Performance Dashboard]](http://ec2-65-0-176-45.ap-south-1.compute.amazonaws.com/api-docs/)
+- Link for the deployed app: [[Deployed EC2 Instance]](http://ec2-65-0-176-45.ap-south-1.compute.amazonaws.com/api-docs/)
+- Link for Public EC2 instance: [[Link for Public EC2 IP]](http://65.0.176.45/api-docs/)
+- CI/CD enabled with your real EC2 SSH key
 
 
 ---
 
-## 📆 Optional Enhancements
+## 📆 Overall Features
 
 | Feature             | Status      |
 |---------------------|-------------|
@@ -160,8 +172,8 @@ docker run -p 5000:5000 -v $(pwd):/app --env-file .env chapter-api
 | Global error handler| ✅ Included |
 | Rate limiter        | ✅ Redis-based |
 | Logging             | ✅ Morgan middleware |
-| Dockerfile          | ✅ Optional |
-| CI/CD (GitHub)      | 🟡 Optional |
+| Dockerfile          | ✅ Generated |
+| CI/CD (GitHub)      | ✅ Workflow Implemented |
 
 ---
 
