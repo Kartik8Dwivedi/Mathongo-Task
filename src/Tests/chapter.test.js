@@ -20,12 +20,14 @@ beforeEach(async () => {
 describe("Chapter API Integration Tests", () => {
   describe("GET /api/v1/chapters", () => {
     it("should return an empty list if no chapters exist", async () => {
+      await Chapter.deleteMany({});
       const res = await request(app).get("/api/v1/chapters");
       expect(res.statusCode).toBe(200);
       expect(res.body.success).toBe(true);
       expect(res.body.data).toHaveLength(0);
       expect(res.body.totalChapters).toBe(0);
     });
+
     it("should return chapters with pagination", async () => {
       await Chapter.insertMany([
         {
@@ -107,7 +109,7 @@ describe("Chapter API Integration Tests", () => {
     });
 
     it("should return 404 for non-existing valid ID", async () => {
-      const validId = "60c72b2f9b1e8a3d5cf2a1ad"; // any valid ObjectId format
+      const validId = "60c72b2f9b1e8a3d5cf2a1ad"; // valid but not present
       const res = await request(app).get(`/api/v1/chapters/${validId}`);
       expect(res.statusCode).toBe(404);
       expect(res.body.success).toBe(false);
@@ -134,10 +136,12 @@ describe("Chapter API Integration Tests", () => {
 });
 
 describe("POST /api/v1/chapters", () => {
-
   it("should insert valid chapters and return failed ones", async () => {
-    const filePath = path.join(path.resolve(), "src/Tests/utils/sampleUpload.json");
-    
+    const filePath = path.join(
+      path.resolve(),
+      "src/Tests/utils/sampleUpload.json"
+    );
+
     const res = await request(app)
       .post("/api/v1/chapters")
       .set("x-admin", "true")
@@ -156,7 +160,8 @@ describe("POST /api/v1/chapters", () => {
       path.resolve(),
       "src/Tests/utils/sampleUpload.json"
     );
-    const fileBuffer = fs.readFileSync(filePath); // ✅ Read as buffer
+    const fileBuffer = fs.readFileSync(filePath);
+
     const res = await request(app)
       .post("/api/v1/chapters")
       .attach("file", fileBuffer, {
