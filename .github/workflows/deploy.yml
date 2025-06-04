@@ -7,24 +7,38 @@ on:
 
 jobs:
   deploy:
+    name: Deploy Node.js App to EC2
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: ⬇️ Checkout source code
         uses: actions/checkout@v3
 
-      - name: Install SSH key
+      - name: 🔐 Install SSH key
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-      - name: Copy files to EC2
+      - name: 🚚 Rsync project to EC2 (exclude .env & node_modules)
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./ ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu/Mathongo-Task
+          rsync -avz --delete \
+            --exclude '.env' \
+            --exclude 'node_modules' \
+            --exclude '.git' \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu/Mathongo-Task
 
-      - name: Restart PM2 on EC2
+      - name: 🚀 Restart app using PM2 on EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             cd /home/ubuntu/Mathongo-Task
-            pm2 restart chapter-api || pm2 start src/server.js --name chapter-api
+
+            echo "📆 Installing production dependencies..."
+            npm install --omit=dev
+
+            echo "🔄 Restarting PM2 process..."
+            pm2 restart chapter-api --update-env || pm2 start src/server.js --name chapter-api --update-env
+
+            echo "📂 Saving PM2 process list..."
+            pm2 save
           EOF
